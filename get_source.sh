@@ -49,7 +49,7 @@ version_field() {
 }
 
 # Version check
-
+# 版本检查
 # required
 reqdmajor=1
 reqdminor=4
