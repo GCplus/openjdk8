@@ -74,7 +74,7 @@
                 <li><a href="#hg">Mercurial的使用</a>
                     <ul>
                         <li><a href="#get_source">获取源码</a></li>
-                        <li><a href="#repositories">仓库</a></li>
+                        <li><a href="#repositories">存储库</a></li>
                     </ul>
                 </li>
 
@@ -143,16 +143,12 @@
                         bash ./get_source.sh
                     </code>
                 </blockquote>
-                Once you have all the repositories, keep in mind that each
-                repository is its own independent repository.
-                You can also re-run <code>./get_source.sh</code> anytime to
-                pull over all the latest changesets in all the repositories.
-                This set of nested repositories has been given the term
-                "forest" and there are various ways to apply the same
-                <code>hg</code> command to each of the repositories.
-                For example, the script <code>make/scripts/hgforest.sh</code>
-                can be used to repeat the same <code>hg</code>
-                command on every repository, e.g.
+                一旦拥有了所有的存储库，请记住每个存储库都是它自己的独立存储库。 
+                您也可以随时重新运行 <code>./get_source.sh</code> ，以覆盖所有存储库中的所有最新变更集。 
+                这组嵌套的存储库已被赋予术语“（森）林”，
+                并且有多种方法可将相同的 <code>hg</code> 命令应用于每个存储库。
+                例如，脚本 <code>make/scripts/hgforest.sh</code> 可用于在每个存储库
+                上重复相同的 <code>hg</code> 命令，例如，
                 <blockquote>
                     <code>
                         cd <i>YourOpenJDK</i>
@@ -162,14 +158,14 @@
                 </blockquote>
             </blockquote>
 
-            <h3><a name="repositories">Repositories</a></h3>
+            <h3><a name="repositories">存储库</a></h3>
             <blockquote>
-                <p>The set of repositories and what they contain:</p>
+                <p>存储库的集合及其所包含的内容：</p>
                 <table border="1">
                     <thead>
                         <tr>
-                            <th>Repository</th>
-                            <th>Contains</th>
+                            <th>存储库</th>
+                            <th>包含信息</th>
                         </tr>
                     </thead>                   
                     <tbody>
@@ -178,7 +174,7 @@
                                 . (root)
                             </td>
                             <td>
-                                common configure and makefile logic
+                                常见的配置和makefile的逻辑文件
                             </td>
                         </tr>
                         <tr>
@@ -186,8 +182,7 @@
                                 hotspot
                             </td>
                             <td>
-                                source code and make files for building
-                                the OpenJDK Hotspot Virtual Machine                         
+                                构建OpenJDK的hotspot虚拟机的源代码和make文件                        
                             </td>
                         </tr>
                         <tr>
@@ -195,7 +190,7 @@
                                 langtools
                             </td>
                             <td>
-                                source code for the OpenJDK javac and language tools
+                                OpenJDK Javac和语言工具的源代码
                             </td>
                         </tr>
                         <tr>
@@ -203,8 +198,7 @@
                                 jdk
                             </td>
                             <td>
-                                source code and make files for building
-                                the OpenJDK runtime libraries and misc files
+                                用于构建OpenJDK运行库和MISC文件的源代码和make文件 
                             </td>
                         </tr>
                         <tr>
@@ -212,7 +206,7 @@
                                 jaxp
                             </td>
                             <td>
-                                source code for the OpenJDK JAXP functionality
+                                OpenJDK JAXP功能的源代码
                             </td>
                         </tr>
                         <tr>
@@ -220,7 +214,7 @@
                                 jaxws
                             </td>
                             <td>
-                                source code for the OpenJDK JAX-WS functionality
+                                OpenJDK JAX-WS功能的源代码 
                             </td>
                         </tr>
                         <tr>
@@ -228,7 +222,7 @@
                                 corba
                             </td>
                             <td>
-                                source code for the OpenJDK Corba functionality
+                                OpenJDK CORBA功能的源代码
                             </td>
                         </tr>
                         <tr>
@@ -236,67 +230,49 @@
                                 nashorn
                             </td>
                             <td>
-                                source code for the OpenJDK JavaScript implementation
+                                OpenJDK JavaScript实现的源代码 
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </blockquote>
 
-            <h3><a name="guidelines">Repository Source Guidelines</a></h3>
+            <h3><a name="guidelines">存储库的源代码指南</a></h3>
             <blockquote>
-                There are some very basic guidelines:
+                    一些非常基本的指导参考：
                 <ul>
                     <li>
-                        Use of whitespace in source files
-                        (.java, .c, .h, .cpp, and .hpp files)
-                        is restricted.
-                        No TABs, no trailing whitespace on lines, and files
-                        should not terminate in more than one blank line.
+                        在源文件（java，.c，.h，.cpp和.hpp文件）中使用空格是受到限制的。
+                        没有TAB，行中没有尾随空格，并且文件不应该终止于多行空行。
                     </li>
                     <li>
-                        Files with execute permissions should not be added
-                        to the source repositories.
+                        不应将具有执行权限的文件添加到源存储库。
                     </li>
                     <li>
-                        All generated files need to be kept isolated from 
-                        the files
-                        maintained or managed by the source control system.
-                        The standard area for generated files is the top level
-                        <code>build/</code> directory.
+                        所有生成的文件需要与源代码管理系统维护或管理的文件保持隔离。
+                        生成文件的标准区域是顶层 <code>build/</code> 目录。
                     </li>
                     <li>
-                        The default build process should be to build the product
-                        and nothing else, in one form, e.g. a product (optimized),
-                        debug (non-optimized, -g plus assert logic), or
-                        fastdebug (optimized, -g plus assert logic).
+                        默认的构建过程应该是以一种特定的方式，
+                        例如产品（优化）、调试（非优化、-G加断言逻辑）
+                        或FASTDEBG（优化的，-G加上断言逻辑）
+                        的一种形式来生成产品和其他内容。 
                     </li>
                     <li>
-                        The <tt>.hgignore</tt> file in each repository
-                        must exist and should
-                        include <tt>^build/</tt>, <tt>^dist/</tt> and 
-                        optionally any
-                        <tt>nbproject/private</tt> directories.
-                        <strong>It should NEVER</strong> include 
-                        anything in the
-                        <tt>src/</tt> or <tt>test/</tt>
-                        or any managed directory area of a repository.
+                        每个存储库中的<tt>.hgignore</tt>文件必须存在，
+                        并且应包含<tt>^build/</tt>，<tt>^dist/</tt>和可选的任何<tt>nbproject/private</tt>目录。
+                        它<strong>绝不应该</strong>在<tt>src/</tt>或<tt>test/</tt>
+                        或任何一个存储库的任何托管目录区域中包含任何内容。
                     </li>
                     <li>
-                        Directory names and file names should never contain
-                        blanks or
-                        non-printing characters.
+                        目录名称和文件名不应包含空格或非打印字符。
                     </li>
                     <li>
-                        Generated source or binary files should NEVER be added to
-                        the repository (that includes <tt>javah</tt> output).
-                        There are some exceptions to this rule, in particular
-                        with some of the generated configure scripts.
+                        生成的源文件或二进制文件不应该添加到存储库（包括<tt>javah</tt>输出）。
+                        这条规则有一些例外，特别是对于一些生成的配置脚本。
                     </li>
                     <li>
-                        Files not needed for typical building
-                        or testing of the repository
-                        should not be added to the repository.
+                        不需要为典型构建或存储库测试所需的文件添加到存储库中。
                     </li>
                 </ul>
             </blockquote>
@@ -305,18 +281,15 @@
 
         <!-- ====================================================== -->
         <hr>
-        <h2><a name="building">Building</a></h2>
+        <h2><a name="building">构建</a></h2>
         <blockquote>
-            The very first step in building the OpenJDK is making sure the
-            system itself has everything it needs to do OpenJDK builds.
-            Once a system is setup, it generally doesn't need to be done again.
+            构建OpenJDK的第一步是确保系统本身具备OpenJDK构建所需的一切。 系统安装完成后，通常不需要再次完成。
             <br>
-            Building the OpenJDK is now done with running a 
+            构建OpenJDK现在可以通过运行
             <a href="#configure"><code>configure</code></a>
-            script which will try and find and verify you have everything
-            you need, followed by running
-            <a href="#gmake"><code>make</code></a>, e.g.
-            <blockquote>
+            脚本完成，该脚本将尝试查找并验证您拥有的所有内容，然后运行
+            <a href="#gmake"><code>make</code></a>，例如，
+            <blockquote> 
                 <b>
                     <code>
                         bash ./configure<br>
@@ -324,24 +297,19 @@
                     </code>
                 </b>
             </blockquote>
-            Where possible the <code>configure</code> script will attempt to located the
-            various components in the default locations or via component
-            specific variable settings.
-            When the normal defaults fail or components cannot be found,
-            additional <code>configure</code> options may be necessary to help <code>configure</code>
-            find the necessary tools for the build, or you may need to
-            re-visit the setup of your system due to missing software
-            packages.
+            在可能的情况下，<code>configure</code>脚本将尝试
+            在默认位置或通过组件特定的变量设置来定位各种组件。
+            当正常的默认配置故障或组件找不到时，
+            可能需要额外的 <code>configure</code> 选项来帮助<code>configure</code>找到构建所需的工具，
+            或者您可能需要由于缺少软件包重新配置系统的环境变量设置。
             <br>
-            <strong>NOTE:</strong> The <code>configure</code> script
-            file does not have
-            execute permissions and will need to be explicitly run with
-            <code>bash</code>,
-            see the <a href="#guidelines">source guidelines</a>.
+            <strong>注：</strong> <code>configure</code> 脚本文件没有执行权限，
+            需要用<code>bash</code>显式运行，
+            请参阅<a href="#guidelines">源码指南</a>。
 
             <!-- ====================================================== -->
             <hr>
-            <h3><a name="setup">System Setup</a></h3>
+            <h3><a name="setup">系统设置</a></h3>
             <blockquote>
                 Before even attempting to use a system to build the OpenJDK
                 there are some very basic system setups needed.
