@@ -1,7 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>OpenJDK Build README</title>
+        <meta content="text/html;charset=UTF-8"/>
+        <title>OpenJDK 构建说明</title>
     </head>
     <body style="background-color:aquamarine">
 
@@ -16,55 +17,48 @@
             </tr>
             <tr>
                 <td align=center>
-                    <h1>OpenJDK Build README</h1>
+                    <h1>OpenJDK 构建说明</h1>
                 </td>
             </tr>
         </table>
 
         <!-- ====================================================== -->
         <hr>
-        <h2><a name="introduction">Introduction</a></h2>
+        <h2><a name="introduction">介绍</a></h2>
         <blockquote>
-            This README file contains build instructions for the
-            <a href="http://openjdk.java.net"  target="_blank">OpenJDK</a>.
-            Building the source code for the
-            OpenJDK
-            requires
-            a certain degree of technical expertise.
+            这份自述文件包含了构建
+            <a href="http://openjdk.java.net"  target="_blank">OpenJDK</a>的操作指南。
+            通过源代码构建OpenJDK需要一定程度的技术专长。
 
             <!-- ====================================================== -->
-            <h3>!!!!!!!!!!!!!!! THIS IS A MAJOR RE-WRITE of this document. !!!!!!!!!!!!!</h3>
+            <h3>!!!!!!!!!!!!!!! 这是这份文档的主要重写 !!!!!!!!!!!!!</h3>
             <blockquote>
-                Some Headlines:
+                部分说明:
                 <ul>
                     <li>
-                        The build is now a "<code>configure &amp;&amp; make</code>" style build
+                            构建现在是 "<code>configure &amp;&amp; make</code>" 风格的实现
                     </li>
                     <li>
-                        Any GNU make 3.81 or newer should work
+                        在构建时，要用GNU make 3.81或者更新的版本
                     </li>
                     <li>
-                        The build should scale, i.e. more processors should
-                        cause the build to be done in less wall-clock time
+                        构建应该规模化，即使用更多的处理器核心，可以使构建在较短的时间内完成。 
                     </li>
                     <li>
-                        Nested or recursive make invocations have been significantly
-                        reduced, as has the total fork/exec or spawning
-                        of sub processes during the build
+                        嵌套或递归调用的调用已经显著减少，就像在构建过程中的子进程的分叉/执行或大量产生一样。
                     </li>
                     <li>
-                        Windows MKS usage is no longer supported
+                            Windows MKS的使用习惯不再支持
                     </li>
                     <li>
-                        Windows Visual Studio <code>vsvars*.bat</code> and 
-                        <code>vcvars*.bat</code> files are run automatically
+                        Windows Visual Studio <code>vsvars*.bat</code> 和 
+                        <code>vcvars*.bat</code> 文件是自动运行
                     </li>
                     <li>
-                        Ant is no longer used when building the OpenJDK
+                        Ant不再用于构建OpenJDK
                     </li>
                     <li>
-                        Use of ALT_* environment variables for configuring the
-                        build is no longer supported
+                            不再使用 ALTY_* 环境变量来配置构建
                     </li>
                 </ul>
             </blockquote>
@@ -72,21 +66,21 @@
 
         <!-- ====================================================== -->
         <hr>
-        <h2><a name="contents">Contents</a></h2>
+        <h2><a name="contents">目录</a></h2>
         <blockquote>
             <ul>
-                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#introduction">引言</a></li>
 
-                <li><a href="#hg">Use of Mercurial</a>
+                <li><a href="#hg">Mercurial的使用</a>
                     <ul>
-                        <li><a href="#get_source">Getting the Source</a></li>
-                        <li><a href="#repositories">Repositories</a></li>
+                        <li><a href="#get_source">获取源码</a></li>
+                        <li><a href="#repositories">仓库</a></li>
                     </ul>
                 </li>
 
-                <li><a href="#building">Building</a>
+                <li><a href="#building">构建</a>
                     <ul>
-                        <li><a href="#setup">System Setup</a>
+                        <li><a href="#setup">系统环境设置</a>
                             <ul>
                                 <li><a href="#linux">Linux</a></li>
                                 <li><a href="#solaris">Solaris</a></li>
@@ -94,23 +88,23 @@
                                 <li><a href="#windows">Windows</a></li>
                             </ul>
                         </li>
-                        <li><a href="#configure">Configure</a></li>
-                        <li><a href="#make">Make</a></li>
+                        <li><a href="#configure">配置</a></li>
+                        <li><a href="#make">构建</a></li>
                     </ul>
                 </li>
-                <li><a href="#testing">Testing</a></li>
+                <li><a href="#testing">测试</a></li>
             </ul>
             <hr>
             <ul>
-                <li><a href="#hints">Appendix A: Hints and Tips</a>
+                <li><a href="#hints">附录一：提示和技巧</a>
                     <ul>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#performance">Build Performance Tips</a></li>
-                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                        <li><a href="#faq">常见问题解答</a></li>
+                        <li><a href="#performance">构建性能技巧</a></li>
+                        <li><a href="#troubleshooting">故障排除</a></li>
                     </ul>
                 </li>
-                <li><a href="#gmake">Appendix B: GNU Make Information</a></li>
-                <li><a href="#buildenvironments">Appendix C: Build Environments</a></li>
+                <li><a href="#gmake">附录二：GNU Make 相关信息</a></li>
+                <li><a href="#buildenvironments">附录三：构建环境配置</a></li>
 
                 <!-- Leave out
                 <li><a href="#mapping">Appendix D: Mapping Old Builds to the New Builds</a></li>    
@@ -121,28 +115,24 @@
 
         <!-- ====================================================== -->
         <hr>
-        <h2><a name="hg">Use of Mercurial</a></h2>
+        <h2><a name="hg">Mercurial的使用</a></h2>
         <blockquote>
-            The OpenJDK sources are maintained with the revision control system
-            <a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial</a>.
-            If you are new to Mercurial, please see the
+            OpenJDK源码与版本控制系统 
+            <a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial</a>一致。
+            如果你是新手，请参阅
             <a href="http://mercurial.selenic.com/wiki/BeginnersGuides">
-                Beginner Guides</a>
-            or refer to the <a href="http://hgbook.red-bean.com/">
-                Mercurial Book</a>.
-            The first few chapters of the book provide an excellent overview of
-            Mercurial, what it is and how it works.
+                初学者指南</a>
+                或 参考<a href="http://hgbook.red-bean.com/"> Mercurial 电子书</a>。
+            这本书的前几章提供了一个精彩的总的描述，它是什么，它是如何工作的。
             <br>
-            For using Mercurial with the OpenJDK refer to the
+            为了OpenJDK而使用 Mercurial ，请参阅开发者指南：
             <a href="http://openjdk.java.net/guide/repositories.html#installConfig">
-                Developer Guide: Installing and Configuring Mercurial</a>
-            section for more information.
-
-            <h3><a name="get_source">Getting the Source</a></h3>
+                开发者指南：安装和配置Mercurial</a>
+                以获取更多信息。
+            <h3><a name="get_source">获取源代码</a></h3>
             <blockquote>
-                To get the entire set of OpenJDK Mercurial repositories
-                use the script <code>get_source.sh</code> located in the 
-                root repository:
+                    要获得整个OpenJDK的Mercurial存储库集合，请使用位于本地根存储库中的脚本
+                 <code>get_source.sh</code> ：
                 <blockquote>
                     <code>
                         hg clone http://hg.openjdk.java.net/jdk8/jdk8 

@@ -1,25 +1,27 @@
 #!/bin/bash
 #
-# Copyright (c) 2012, Oracle and/or its affiliates. All rights reserved.
-# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+# 版权所有（c）2012,2013，Oracle和/或其附属公司。版权所有。
+# 请勿更改或删除版权声明或本文件头。
 #
-# This code is free software; you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 2 only, as
-# published by the Free Software Foundation.
-#
-# This code is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-# version 2 for more details (a copy is included in the LICENSE file that
-# accompanied this code).
-#
-# You should have received a copy of the GNU General Public License version
-# 2 along with this work; if not, write to the Free Software Foundation,
-# Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
-#
-# Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
-# or visit www.oracle.com if you need additional information or have any
-# questions.
+# 此代码是免费软件;你可以重新分配和/或修改它
+# 仅限于GNU通用公共许可证版本2的条款，如
+# 由自由软件基金会发布。 Oracle指定了这一点
+# 特定文件受限于所提供的“Classpath”异常
+# 由甲骨文在附带此代码的LICENSE文件中提供。
+# 
+# 这个代码是分发的，希望它会有用，但没有
+# 任何担保;甚至没有对适销性或适销性的暗示保证
+# 针对特定用途的适用性。请参阅GNU通用公共许可证
+# 版本2了解更多详情（一份副本包含在LICENSE文件中
+# 附上此代码）。
+# 
+# 您应该收到GNU通用公共许可证版本的副本
+# 2连同这项工作;如果没有，请写信给自由软件基金会，
+# Inc.，51 Franklin St，Fifth Floor，Boston，MA 02110-1301 USA。
+# 
+# 请联系Oracle，500 Oracle Parkway，Redwood Shores，CA 94065 USA
+# 或访问www.oracle.com，如果你需要更多的信息或有任何
+# 问题。
 #
 
 # This is a thin wrapper which will call the real configure script, and
