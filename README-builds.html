@@ -311,53 +311,38 @@
             <hr>
             <h3><a name="setup">系统设置</a></h3>
             <blockquote>
-                Before even attempting to use a system to build the OpenJDK
-                there are some very basic system setups needed.
-                For all systems:
+                在尝试使用系统来构建OpenJDK之前，还需要一些非常基本的系统设置。对于所有系统：
                 <ul>
                     <li>
-                        Be sure the GNU make utility is version 3.81 or newer,
-                        e.g. run "<code>make -version</code>"
+                        确保 GNU make 程序为3.81版或更新版，例如运行 "<code>make -version</code>"
                     </li>
                     <li>
-                        Install a
-                        <a name="bootjdk">Bootstrap JDK</a>.
-                        All OpenJDK builds require access to a previously released
-                        JDK called the <i>bootstrap JDK</i> or <i>boot JDK.</i>
-                        The general rule is that the bootstrap JDK
-                        must be an instance of the previous major
-                        release of the JDK. In addition, there may be
-                        a requirement to use a release at or beyond a
-                        particular update level.
+                            安装<a name="bootjdk">Bootstrap JDK</a>。
+                            所有OpenJDK构建都需要访问以前发布的JDK，
+                            称为<i>bootstrap JDK</i>或<i>boot JDK</i>。
+                            一般规则是Bootstrap JDK必须是JDK以前的主要版本的实例。
+                            此外，可能需要在特定更新级别上或超过某个版本使用发布。 
                         <br>&nbsp;<br>
 
-                        <b><i>Building JDK 8 requires use of a version
-                        of JDK 7 that is at Update 7 or newer. JDK 8
-                        developers should not use JDK 8 as the boot
-                        JDK, to ensure that JDK 8 dependencies are
-                        not introduced into the parts of the system
-                        that are built with JDK 7.</i></b>
+                        <b><i>构建JDK 8需要使用Update 7或更新版本的JDK 7。 
+                        JDK 8开发人员不应该使用JDK 8作为引导JDK，
+                        以确保JDK 8依赖不会引入到使用JDK 7构建的系统部分中。</i></b>
 
                         <br>&nbsp;<br>
-                        The JDK 7 binaries can be downloaded from Oracle's 
+                        JDK 7二进制文件可以从Oracle的
                         <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html"
-                           target="_blank">JDK 7 download site</a>.
-                        For build performance reasons
-                        is very important that this bootstrap JDK be made available 
-                        on the local disk of the machine doing the build.
-                        You should add its <code>bin</code> directory
-                        to the <code>PATH</code> environment variable.
-                        If <code>configure</code> has any issues finding this JDK, you may
-                        need to use the <code>configure</code> option
-                        <code>--with-boot-jdk</code>.
+                        target="_blank">JDK 7下载站点</a>下载。 
+                        对于构建性能的原因是非常重要的，
+                        这个引导JDK可以在构建机器的本地磁盘上使用。 
+                        您应该将其<code>bin</code>目录添加到<code>PATH</code>环境变量中。
+                        如果<code>configure</code>在查找此JDK时遇到任何问题，
+                        则可能需要使用<code>configure</code>选项<code>--with-boot-jdk</code>。
                     </li>
                     <li>
-                        Ensure that GNU make, the Bootstrap JDK,
-                        and the compilers are all
-                        in your PATH environment variable
+                        确保GNU make，引导 JDK和编译器都在您的PATH环境变量中
                     </li>
                 </ul>
-                And for specific systems:
+                对于特定的系统：
                 <table border="1">
                     <thead>
                         <tr>
@@ -370,15 +355,15 @@
                     <tbody>
                         <tr>
                             <td>
-                                Install all the software development
-                                packages needed including
-                                <a href="#alsa">alsa</a>,
-                                <a href="#freetype">freetype</a>,
-                                <a href="#cups">cups</a>, and
-                                <a href="#xrender">xrender</a>.
+                                安装所有需要的软件开发包，包括
+                                
+                                <a href="#alsa">ALSA</a>、
+                                <a href="#freetype">RIETYPE</a>、
+                                <a href="#cups">CUPS</a>和
+                                <a href="#xrender">XRENDER</a>。
                                 <br>
-                                See
-                                <a href="#SDBE">specific system packages</a>.
+                                请参阅
+                                <a href="#SDBE">特定的系统包</a>。
                             </td>
                             <td>
                                 Install all the software development
