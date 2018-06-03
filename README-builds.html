@@ -74,7 +74,7 @@
                 <li><a href="#hg">Mercurial的使用</a>
                     <ul>
                         <li><a href="#get_source">获取源码</a></li>
-                        <li><a href="#repositories">仓库</a></li>
+                        <li><a href="#repositories">存储库</a></li>
                     </ul>
                 </li>
 
@@ -143,16 +143,12 @@
                         bash ./get_source.sh
                     </code>
                 </blockquote>
-                Once you have all the repositories, keep in mind that each
-                repository is its own independent repository.
-                You can also re-run <code>./get_source.sh</code> anytime to
-                pull over all the latest changesets in all the repositories.
-                This set of nested repositories has been given the term
-                "forest" and there are various ways to apply the same
-                <code>hg</code> command to each of the repositories.
-                For example, the script <code>make/scripts/hgforest.sh</code>
-                can be used to repeat the same <code>hg</code>
-                command on every repository, e.g.
+                一旦拥有了所有的存储库，请记住每个存储库都是它自己的独立存储库。 
+                您也可以随时重新运行 <code>./get_source.sh</code> ，以覆盖所有存储库中的所有最新变更集。 
+                这组嵌套的存储库已被赋予术语“（森）林”，
+                并且有多种方法可将相同的 <code>hg</code> 命令应用于每个存储库。
+                例如，脚本 <code>make/scripts/hgforest.sh</code> 可用于在每个存储库
+                上重复相同的 <code>hg</code> 命令，例如，
                 <blockquote>
                     <code>
                         cd <i>YourOpenJDK</i>
@@ -162,14 +158,14 @@
                 </blockquote>
             </blockquote>
 
-            <h3><a name="repositories">Repositories</a></h3>
+            <h3><a name="repositories">存储库</a></h3>
             <blockquote>
-                <p>The set of repositories and what they contain:</p>
+                <p>存储库的集合及其所包含的内容：</p>
                 <table border="1">
                     <thead>
                         <tr>
-                            <th>Repository</th>
-                            <th>Contains</th>
+                            <th>存储库</th>
+                            <th>包含信息</th>
                         </tr>
                     </thead>                   
                     <tbody>
@@ -178,7 +174,7 @@
                                 . (root)
                             </td>
                             <td>
-                                common configure and makefile logic
+                                常见的配置和makefile的逻辑文件
                             </td>
                         </tr>
                         <tr>
@@ -186,8 +182,7 @@
                                 hotspot
                             </td>
                             <td>
-                                source code and make files for building
-                                the OpenJDK Hotspot Virtual Machine                         
+                                构建OpenJDK的hotspot虚拟机的源代码和make文件                        
                             </td>
                         </tr>
                         <tr>
@@ -195,7 +190,7 @@
                                 langtools
                             </td>
                             <td>
-                                source code for the OpenJDK javac and language tools
+                                OpenJDK Javac和语言工具的源代码
                             </td>
                         </tr>
                         <tr>
@@ -203,8 +198,7 @@
                                 jdk
                             </td>
                             <td>
-                                source code and make files for building
-                                the OpenJDK runtime libraries and misc files
+                                用于构建OpenJDK运行库和MISC文件的源代码和make文件 
                             </td>
                         </tr>
                         <tr>
@@ -212,7 +206,7 @@
                                 jaxp
                             </td>
                             <td>
-                                source code for the OpenJDK JAXP functionality
+                                OpenJDK JAXP功能的源代码
                             </td>
                         </tr>
                         <tr>
@@ -220,7 +214,7 @@
                                 jaxws
                             </td>
                             <td>
-                                source code for the OpenJDK JAX-WS functionality
+                                OpenJDK JAX-WS功能的源代码 
                             </td>
                         </tr>
                         <tr>
@@ -228,7 +222,7 @@
                                 corba
                             </td>
                             <td>
-                                source code for the OpenJDK Corba functionality
+                                OpenJDK CORBA功能的源代码
                             </td>
                         </tr>
                         <tr>
@@ -236,67 +230,49 @@
                                 nashorn
                             </td>
                             <td>
-                                source code for the OpenJDK JavaScript implementation
+                                OpenJDK JavaScript实现的源代码 
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </blockquote>
 
-            <h3><a name="guidelines">Repository Source Guidelines</a></h3>
+            <h3><a name="guidelines">存储库的源代码指南</a></h3>
             <blockquote>
-                There are some very basic guidelines:
+                    一些非常基本的指导参考：
                 <ul>
                     <li>
-                        Use of whitespace in source files
-                        (.java, .c, .h, .cpp, and .hpp files)
-                        is restricted.
-                        No TABs, no trailing whitespace on lines, and files
-                        should not terminate in more than one blank line.
+                        在源文件（java，.c，.h，.cpp和.hpp文件）中使用空格是受到限制的。
+                        没有TAB，行中没有尾随空格，并且文件不应该终止于多行空行。
                     </li>
                     <li>
-                        Files with execute permissions should not be added
-                        to the source repositories.
+                        不应将具有执行权限的文件添加到源存储库。
                     </li>
                     <li>
-                        All generated files need to be kept isolated from 
-                        the files
-                        maintained or managed by the source control system.
-                        The standard area for generated files is the top level
-                        <code>build/</code> directory.
+                        所有生成的文件需要与源代码管理系统维护或管理的文件保持隔离。
+                        生成文件的标准区域是顶层 <code>build/</code> 目录。
                     </li>
                     <li>
-                        The default build process should be to build the product
-                        and nothing else, in one form, e.g. a product (optimized),
-                        debug (non-optimized, -g plus assert logic), or
-                        fastdebug (optimized, -g plus assert logic).
+                        默认的构建过程应该是以一种特定的方式，
+                        例如产品（优化）、调试（非优化、-G加断言逻辑）
+                        或FASTDEBG（优化的，-G加上断言逻辑）
+                        的一种形式来生成产品和其他内容。 
                     </li>
                     <li>
-                        The <tt>.hgignore</tt> file in each repository
-                        must exist and should
-                        include <tt>^build/</tt>, <tt>^dist/</tt> and 
-                        optionally any
-                        <tt>nbproject/private</tt> directories.
-                        <strong>It should NEVER</strong> include 
-                        anything in the
-                        <tt>src/</tt> or <tt>test/</tt>
-                        or any managed directory area of a repository.
+                        每个存储库中的<tt>.hgignore</tt>文件必须存在，
+                        并且应包含<tt>^build/</tt>，<tt>^dist/</tt>和可选的任何<tt>nbproject/private</tt>目录。
+                        它<strong>绝不应该</strong>在<tt>src/</tt>或<tt>test/</tt>
+                        或任何一个存储库的任何托管目录区域中包含任何内容。
                     </li>
                     <li>
-                        Directory names and file names should never contain
-                        blanks or
-                        non-printing characters.
+                        目录名称和文件名不应包含空格或非打印字符。
                     </li>
                     <li>
-                        Generated source or binary files should NEVER be added to
-                        the repository (that includes <tt>javah</tt> output).
-                        There are some exceptions to this rule, in particular
-                        with some of the generated configure scripts.
+                        生成的源文件或二进制文件不应该添加到存储库（包括<tt>javah</tt>输出）。
+                        这条规则有一些例外，特别是对于一些生成的配置脚本。
                     </li>
                     <li>
-                        Files not needed for typical building
-                        or testing of the repository
-                        should not be added to the repository.
+                        不需要为典型构建或存储库测试所需的文件添加到存储库中。
                     </li>
                 </ul>
             </blockquote>
@@ -305,18 +281,15 @@
 
         <!-- ====================================================== -->
         <hr>
-        <h2><a name="building">Building</a></h2>
+        <h2><a name="building">构建</a></h2>
         <blockquote>
-            The very first step in building the OpenJDK is making sure the
-            system itself has everything it needs to do OpenJDK builds.
-            Once a system is setup, it generally doesn't need to be done again.
+            构建OpenJDK的第一步是确保系统本身具备OpenJDK构建所需的一切。 系统安装完成后，通常不需要再次完成。
             <br>
-            Building the OpenJDK is now done with running a 
+            构建OpenJDK现在可以通过运行
             <a href="#configure"><code>configure</code></a>
-            script which will try and find and verify you have everything
-            you need, followed by running
-            <a href="#gmake"><code>make</code></a>, e.g.
-            <blockquote>
+            脚本完成，该脚本将尝试查找并验证您拥有的所有内容，然后运行
+            <a href="#gmake"><code>make</code></a>，例如，
+            <blockquote> 
                 <b>
                     <code>
                         bash ./configure<br>
@@ -324,72 +297,52 @@
                     </code>
                 </b>
             </blockquote>
-            Where possible the <code>configure</code> script will attempt to located the
-            various components in the default locations or via component
-            specific variable settings.
-            When the normal defaults fail or components cannot be found,
-            additional <code>configure</code> options may be necessary to help <code>configure</code>
-            find the necessary tools for the build, or you may need to
-            re-visit the setup of your system due to missing software
-            packages.
+            在可能的情况下，<code>configure</code>脚本将尝试
+            在默认位置或通过组件特定的变量设置来定位各种组件。
+            当正常的默认配置故障或组件找不到时，
+            可能需要额外的 <code>configure</code> 选项来帮助<code>configure</code>找到构建所需的工具，
+            或者您可能需要由于缺少软件包重新配置系统的环境变量设置。
             <br>
-            <strong>NOTE:</strong> The <code>configure</code> script
-            file does not have
-            execute permissions and will need to be explicitly run with
-            <code>bash</code>,
-            see the <a href="#guidelines">source guidelines</a>.
+            <strong>注：</strong> <code>configure</code> 脚本文件没有执行权限，
+            需要用<code>bash</code>显式运行，
+            请参阅<a href="#guidelines">源码指南</a>。
 
             <!-- ====================================================== -->
             <hr>
-            <h3><a name="setup">System Setup</a></h3>
+            <h3><a name="setup">系统设置</a></h3>
             <blockquote>
-                Before even attempting to use a system to build the OpenJDK
-                there are some very basic system setups needed.
-                For all systems:
+                在尝试使用系统来构建OpenJDK之前，还需要一些非常基本的系统设置。对于所有系统：
                 <ul>
                     <li>
-                        Be sure the GNU make utility is version 3.81 or newer,
-                        e.g. run "<code>make -version</code>"
+                        确保 GNU make 程序为3.81版或更新版，例如运行 "<code>make -version</code>"
                     </li>
                     <li>
-                        Install a
-                        <a name="bootjdk">Bootstrap JDK</a>.
-                        All OpenJDK builds require access to a previously released
-                        JDK called the <i>bootstrap JDK</i> or <i>boot JDK.</i>
-                        The general rule is that the bootstrap JDK
-                        must be an instance of the previous major
-                        release of the JDK. In addition, there may be
-                        a requirement to use a release at or beyond a
-                        particular update level.
+                            安装<a name="bootjdk">Bootstrap JDK</a>。
+                            所有OpenJDK构建都需要访问以前发布的JDK，
+                            称为<i>bootstrap JDK</i>或<i>boot JDK</i>。
+                            一般规则是Bootstrap JDK必须是JDK以前的主要版本的实例。
+                            此外，可能需要在特定更新级别上或超过某个版本使用发布。 
                         <br>&nbsp;<br>
 
-                        <b><i>Building JDK 8 requires use of a version
-                        of JDK 7 that is at Update 7 or newer. JDK 8
-                        developers should not use JDK 8 as the boot
-                        JDK, to ensure that JDK 8 dependencies are
-                        not introduced into the parts of the system
-                        that are built with JDK 7.</i></b>
+                        <b><i>构建JDK 8需要使用Update 7或更新版本的JDK 7。 
+                        JDK 8开发人员不应该使用JDK 8作为引导JDK，
+                        以确保JDK 8依赖不会引入到使用JDK 7构建的系统部分中。</i></b>
 
                         <br>&nbsp;<br>
-                        The JDK 7 binaries can be downloaded from Oracle's 
+                        JDK 7二进制文件可以从Oracle的
                         <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html"
-                           target="_blank">JDK 7 download site</a>.
-                        For build performance reasons
-                        is very important that this bootstrap JDK be made available 
-                        on the local disk of the machine doing the build.
-                        You should add its <code>bin</code> directory
-                        to the <code>PATH</code> environment variable.
-                        If <code>configure</code> has any issues finding this JDK, you may
-                        need to use the <code>configure</code> option
-                        <code>--with-boot-jdk</code>.
+                        target="_blank">JDK 7下载站点</a>下载。 
+                        对于构建性能的原因是非常重要的，
+                        这个引导JDK可以在构建机器的本地磁盘上使用。 
+                        您应该将其<code>bin</code>目录添加到<code>PATH</code>环境变量中。
+                        如果<code>configure</code>在查找此JDK时遇到任何问题，
+                        则可能需要使用<code>configure</code>选项<code>--with-boot-jdk</code>。
                     </li>
                     <li>
-                        Ensure that GNU make, the Bootstrap JDK,
-                        and the compilers are all
-                        in your PATH environment variable
+                        确保GNU make，引导 JDK和编译器都在您的PATH环境变量中
                     </li>
                 </ul>
-                And for specific systems:
+                对于特定的系统：
                 <table border="1">
                     <thead>
                         <tr>
@@ -402,45 +355,43 @@
                     <tbody>
                         <tr>
                             <td>
-                                Install all the software development
-                                packages needed including
-                                <a href="#alsa">alsa</a>,
-                                <a href="#freetype">freetype</a>,
-                                <a href="#cups">cups</a>, and
-                                <a href="#xrender">xrender</a>.
+                                安装所有需要的软件开发包，包括
+                                
+                                <a href="#alsa">ALSA</a>、
+                                <a href="#freetype">RIETYPE</a>、
+                                <a href="#cups">CUPS</a>和
+                                <a href="#xrender">XRENDER</a>。
                                 <br>
-                                See
-                                <a href="#SDBE">specific system packages</a>.
+                                请参阅
+                                <a href="#SDBE">特定的系统包</a>。
                             </td>
                             <td>
-                                Install all the software development
-                                packages needed  including
-                                <a href="#studio">Studio Compilers</a>,
-                                <a href="#freetype">freetype</a>,
-                                <a href="#cups">cups</a>, and
-                                <a href="#xrender">xrender</a>.
+                                安装所有需要的软件开发包，包括
+                                <a href="#studio">Studio Compilers</a>、
+                                <a href="#freetype">freetype</a>、
+                                <a href="#cups">CUPS</a>和
+                                <a href="#xrender">xrender</a>。
                                 <br>
-                                See
-                                <a href="#SDBE">specific system packages</a>.
+                                请参阅
+                                <a href="#SDBE">特定的系统包</a>。
                             </td>
                             <td>
                                 <ul>
                                     <li>
-                                        Install one of
-                                        <a href="#cygwin">CYGWIN</a> or
+                                        安装
+                                        <a href="#cygwin">CYGWIN</a> 或者
                                         <a href="#msys">MinGW/MSYS</a>
                                     </li>
                                     <li>
-                                        Install
+                                        安装
                                         <a href="#vs2010">Visual Studio 2010</a>
                                     </li>
                                 </ul>
                             </td>
                             <td>
-                                Install 
+                                安装 
                                 <a href="https://developer.apple.com/xcode/">XCode 4.5.2</a> 
-                                and also install the "Command line tools" found under the
-                                preferences pane "Downloads"
+                                并安装在偏好窗格“下载”下找到的“命令行工具(Command line tools)”
                             </td>
                         </tr>
                     </tbody>
@@ -448,34 +399,26 @@
 
                 <h4><a name="linux">Linux</a></h4>
                 <blockquote>
-                    With Linux, try and favor the system packages over 
-                    building your own
-                    or getting packages from other areas.
-                    Most Linux builds should be possible with the system's
-                    available packages.
+                    对于Linux，尝试有利于系统软件包在构建自己的或从其他方面得到的包。
+                    大多数Linux版本应该可以使用系统的默认软件包。
                     <br>
-                    Note that some Linux systems have a habit of pre-populating
-                    your environment variables for you, for example <code>JAVA_HOME</code>
-                    might get pre-defined for you to refer to the JDK installed on
-                    your Linux system.
-                    You will need to unset <code>JAVA_HOME</code>.
-                    It's a good idea to run <code>env</code> and verify the
-                    environment variables you are getting from the default system
-                    settings make sense for building the OpenJDK.
-
+                    请注意，某些Linux系统都默认为您预填充环境变量，例如，
+                    可能为您预先定义了<code>JAVA_HOME</code>，
+                    以便引用安装在Linux系统上的JDK。 
+                    您需要取消<code>JAVA_HOME</code>的默认设置。 
+                    运行<code>env</code>和验证你的系统默认设置的环境变量在构建OpenJDK时是一个好主意。
                 </blockquote>
 
                 <h4><a name="solaris">Solaris</a></h4>
                 <blockquote>
                     <h5><a name="studio">Studio Compilers</a></h5>
                     <blockquote>
-                        At a minimum, the
+                            至少需要
                         <a href="http://www.oracle.com/technetwork/server-storage/solarisstudio/downloads/index.htm" target="_blank">
                             Studio 12 Update 1 Compilers</a>
-                        (containing version 5.10 of the C and C++ compilers) is required,
-                        including specific patches.
+                            （包含C和C++编译器5.10版），包括特定的修补程序。
                         <p>
-                            The Solaris SPARC patch list is:
+                            Solaris SPARC修补程序列表如下：
                         <ul>
                             <li>
                                 118683-05: SunOS 5.10: Patch for profiling libraries and assembler
@@ -509,7 +452,7 @@
                             </li>
                         </ul>
                         <p>
-                            The Solaris X86 patch list is:
+                            用于X86的Solaris补丁如下：
                         <ul>
                             <li>
                                 119961-07: SunOS 5.10_x86, x64, Patch for profiling libraries and assembler
@@ -534,7 +477,7 @@
                             </li>
                         </ul>
                         <p> 
-                            Place the <code>bin</code> directory in <code>PATH</code>.
+                            将 <code>bin</code> 目录写入到 <code>PATH</code>里面。
                         <p>
                             The Oracle Solaris Studio Express compilers at:
                             <a href="http://www.oracle.com/technetwork/server-storage/solarisstudio/downloads/index-jsp-142582.html" target="_blank">
