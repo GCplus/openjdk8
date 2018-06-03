@@ -366,34 +366,32 @@
                                 <a href="#SDBE">特定的系统包</a>。
                             </td>
                             <td>
-                                Install all the software development
-                                packages needed  including
-                                <a href="#studio">Studio Compilers</a>,
-                                <a href="#freetype">freetype</a>,
-                                <a href="#cups">cups</a>, and
-                                <a href="#xrender">xrender</a>.
+                                安装所有需要的软件开发包，包括
+                                <a href="#studio">Studio Compilers</a>、
+                                <a href="#freetype">freetype</a>、
+                                <a href="#cups">CUPS</a>和
+                                <a href="#xrender">xrender</a>。
                                 <br>
-                                See
-                                <a href="#SDBE">specific system packages</a>.
+                                请参阅
+                                <a href="#SDBE">特定的系统包</a>。
                             </td>
                             <td>
                                 <ul>
                                     <li>
-                                        Install one of
-                                        <a href="#cygwin">CYGWIN</a> or
+                                        安装
+                                        <a href="#cygwin">CYGWIN</a> 或者
                                         <a href="#msys">MinGW/MSYS</a>
                                     </li>
                                     <li>
-                                        Install
+                                        安装
                                         <a href="#vs2010">Visual Studio 2010</a>
                                     </li>
                                 </ul>
                             </td>
                             <td>
-                                Install 
+                                安装 
                                 <a href="https://developer.apple.com/xcode/">XCode 4.5.2</a> 
-                                and also install the "Command line tools" found under the
-                                preferences pane "Downloads"
+                                并安装在偏好窗格“下载”下找到的“命令行工具(Command line tools)”
                             </td>
                         </tr>
                     </tbody>
@@ -401,34 +399,26 @@
 
                 <h4><a name="linux">Linux</a></h4>
                 <blockquote>
-                    With Linux, try and favor the system packages over 
-                    building your own
-                    or getting packages from other areas.
-                    Most Linux builds should be possible with the system's
-                    available packages.
+                    对于Linux，尝试有利于系统软件包在构建自己的或从其他方面得到的包。
+                    大多数Linux版本应该可以使用系统的默认软件包。
                     <br>
-                    Note that some Linux systems have a habit of pre-populating
-                    your environment variables for you, for example <code>JAVA_HOME</code>
-                    might get pre-defined for you to refer to the JDK installed on
-                    your Linux system.
-                    You will need to unset <code>JAVA_HOME</code>.
-                    It's a good idea to run <code>env</code> and verify the
-                    environment variables you are getting from the default system
-                    settings make sense for building the OpenJDK.
-
+                    请注意，某些Linux系统都默认为您预填充环境变量，例如，
+                    可能为您预先定义了<code>JAVA_HOME</code>，
+                    以便引用安装在Linux系统上的JDK。 
+                    您需要取消<code>JAVA_HOME</code>的默认设置。 
+                    运行<code>env</code>和验证你的系统默认设置的环境变量在构建OpenJDK时是一个好主意。
                 </blockquote>
 
                 <h4><a name="solaris">Solaris</a></h4>
                 <blockquote>
                     <h5><a name="studio">Studio Compilers</a></h5>
                     <blockquote>
-                        At a minimum, the
+                            至少需要
                         <a href="http://www.oracle.com/technetwork/server-storage/solarisstudio/downloads/index.htm" target="_blank">
                             Studio 12 Update 1 Compilers</a>
-                        (containing version 5.10 of the C and C++ compilers) is required,
-                        including specific patches.
+                            （包含C和C++编译器5.10版），包括特定的修补程序。
                         <p>
-                            The Solaris SPARC patch list is:
+                            Solaris SPARC修补程序列表如下：
                         <ul>
                             <li>
                                 118683-05: SunOS 5.10: Patch for profiling libraries and assembler
@@ -462,7 +452,7 @@
                             </li>
                         </ul>
                         <p>
-                            The Solaris X86 patch list is:
+                            用于X86的Solaris补丁如下：
                         <ul>
                             <li>
                                 119961-07: SunOS 5.10_x86, x64, Patch for profiling libraries and assembler
@@ -487,7 +477,7 @@
                             </li>
                         </ul>
                         <p> 
-                            Place the <code>bin</code> directory in <code>PATH</code>.
+                            将 <code>bin</code> 目录写入到 <code>PATH</code>里面。
                         <p>
                             The Oracle Solaris Studio Express compilers at:
                             <a href="http://www.oracle.com/technetwork/server-storage/solarisstudio/downloads/index-jsp-142582.html" target="_blank">
