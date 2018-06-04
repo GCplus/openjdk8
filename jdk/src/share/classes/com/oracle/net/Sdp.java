@@ -1,26 +1,26 @@
 /*
- * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
- *
- * This code is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License version 2 only, as
- * published by the Free Software Foundation.  Oracle designates this
- * particular file as subject to the "Classpath" exception as provided
- * by Oracle in the LICENSE file that accompanied this code.
- *
- * This code is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
- * version 2 for more details (a copy is included in the LICENSE file that
- * accompanied this code).
- *
- * You should have received a copy of the GNU General Public License version
- * 2 along with this work; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
- *
- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
- * or visit www.oracle.com if you need additional information or have any
- * questions.
+ *版权所有（c）1995,2013，Oracle和/或其附属公司。版权所有。
+ *请勿更改或删除版权声明或本文件头。
+ *
+ *此代码是免费软件;你可以重新分配和/或修改它
+ *仅限于GNU通用公共许可证版本2的条款，如
+ *由自由软件基金会发布。 Oracle指定了这一点
+ *特定文件受限于所提供的“Classpath”异常
+ *由Oracle在伴随此代码的LICENSE文件中提供。
+ *
+ *这个代码是分发的，希望它会有用，但没有
+ *任何担保;甚至没有对适销性或适销性的暗示保证
+ *针对特定用途的适用性。请参阅GNU通用公共许可证
+ *版本2了解更多详情（一份副本包含在LICENSE文件中
+ *附有此代码）。
+ *
+ *您应该收到GNU通用公共许可证版本的副本
+ * 2与这项工作一起;如果没有，请写信给自由软件基金会，
+ * Inc.，51 Franklin St，Fifth Floor，Boston，MA 02110-1301 USA。
+ *
+ *请联系Oracle，500 Oracle Parkway，Redwood Shores，CA 94065 USA
+ *或访问www.oracle.com如果你需要更多的信息或有任何
+ *问题。
  */
 
 package com.oracle.net;
@@ -43,15 +43,15 @@ import java.lang.reflect.InvocationTargetException;
 import sun.net.sdp.SdpSupport;
 
 /**
- * This class consists exclusively of static methods that Sockets or Channels to
- * sockets that support the InfiniBand Sockets Direct Protocol (SDP).
+ * 该类完全由静态方法支持套接字或通道，
+ * 以支持无限带宽（InfiniBand）套接字直接协议（SDP）。 
  */
 
 public final class Sdp {
     private Sdp() { }
 
     /**
-     * The package-privage ServerSocket(SocketImpl) constructor
+     * 私有包(package-privage) ServerSocket(SocketImpl) 的 构造函数
      */
     private static final Constructor<ServerSocket> serverSocketCtor;
     static {
@@ -65,7 +65,7 @@ public final class Sdp {
     }
 
     /**
-     * The package-private SdpSocketImpl() constructor
+     * 私有包 SdpSocketImpl() 的 构造函数
      */
     private static final Constructor<SocketImpl> socketImplCtor;
     static {
@@ -90,7 +90,7 @@ public final class Sdp {
     }
 
     /**
-     * SDP enabled Socket.
+     * SDP 启用 Socket套接字
      */
     private static class SdpSocket extends Socket {
         SdpSocket(SocketImpl impl) throws SocketException {
@@ -99,7 +99,7 @@ public final class Sdp {
     }
 
     /**
-     * Creates a SDP enabled SocketImpl
+     * 创建一个启用SDP的SocketImpl（Socket实现）
      */
     private static SocketImpl createSocketImpl() {
         try {
@@ -114,15 +114,15 @@ public final class Sdp {
     }
 
     /**
-     * Creates an unconnected and unbound SDP socket. The {@code Socket} is
-     * associated with a {@link java.net.SocketImpl} of the system-default type.
+     * 创建一个未连接和未绑定的SDP套接字。
+     *  {@code Socket} 与系统默认类型的 {@link java.net.SocketImpl} 相关联.
      *
-     * @return  a new Socket
+     * @return  一个新的 Socket 连接
      *
      * @throws  UnsupportedOperationException
-     *          If SDP is not supported
+     *          如果SDP不受支持
      * @throws  IOException
-     *          If an I/O error occurs
+     *          如果发生I/O错误
      */
     public static Socket openSocket() throws IOException {
         SocketImpl impl = createSocketImpl();
@@ -130,18 +130,18 @@ public final class Sdp {
     }
 
     /**
-     * Creates an unbound SDP server socket. The {@code ServerSocket} is
-     * associated with a {@link java.net.SocketImpl} of the system-default type.
-     *
-     * @return  a new ServerSocket
+     * 创建一个未绑定的SDP服务器套接字。
+     * {@code ServerSocket} 与系统默认的 {@link java.net.SocketImpl} 相关联。
+     * 
+     * @return  一个新的 ServerSocket
      *
      * @throws  UnsupportedOperationException
-     *          If SDP is not supported
+     *          如果SDP不受支持
      * @throws  IOException
-     *          If an I/O error occurs
+     *          如果发生I/O错误
      */
     public static ServerSocket openServerSocket() throws IOException {
-        // create ServerSocket via package-private constructor
+        // 通过包私有构造函数创建ServerSocket
         SocketImpl impl = createSocketImpl();
         try {
             return serverSocketCtor.newInstance(impl);
@@ -160,18 +160,17 @@ public final class Sdp {
     }
 
     /**
-     * Opens a socket channel to a SDP socket.
+     * 打开一个Socket(套接字)通道到SDP Socket(套接字)
      *
-     * <p> The channel will be associated with the system-wide default
-     * {@link java.nio.channels.spi.SelectorProvider SelectorProvider}.
+     * <p> 这个通道会与系统默认的
+     * {@link java.nio.channels.spi.SelectorProvider SelectorProvider}进行关联.
      *
-     * @return  a new SocketChannel
+     * @return  一个新的 SocketChannel
      *
      * @throws  UnsupportedOperationException
-     *          If SDP is not supported or not supported by the default selector
-     *          provider
+     *          如果SDP不支持或不被默认选择器支持
      * @throws  IOException
-     *          If an I/O error occurs.
+     *          如果发生I/O错误
      */
     public static SocketChannel openSocketChannel() throws IOException {
         FileDescriptor fd = SdpSupport.createSocket();
@@ -179,18 +178,17 @@ public final class Sdp {
     }
 
     /**
-     * Opens a socket channel to a SDP socket.
+     * 打开一个连接到SDP socket（套接字）的socket channel（套接字连接）。
      *
-     * <p> The channel will be associated with the system-wide default
-     * {@link java.nio.channels.spi.SelectorProvider SelectorProvider}.
+     * <p> 该频道将与系统默认的
+     * {@link java.nio.channels.spi.SelectorProvider SelectorProvider}相关联。
      *
-     * @return  a new ServerSocketChannel
+     * @return  一个新的 ServerSocketChannel
      *
      * @throws  UnsupportedOperationException
-     *          If SDP is not supported or not supported by the default selector
-     *          provider
+     *          如果SDP不支持或不被默认选择器支持
      * @throws  IOException
-     *          If an I/O error occurs
+     *          如果发生I/O错误
      */
     public static ServerSocketChannel openServerSocketChannel()
         throws IOException
