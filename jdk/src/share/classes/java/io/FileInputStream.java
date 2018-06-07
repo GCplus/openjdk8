@@ -1,26 +1,26 @@
 /*
- * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
- *
- * This code is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License version 2 only, as
- * published by the Free Software Foundation.  Oracle designates this
- * particular file as subject to the "Classpath" exception as provided
- * by Oracle in the LICENSE file that accompanied this code.
- *
- * This code is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
- * version 2 for more details (a copy is included in the LICENSE file that
- * accompanied this code).
- *
- * You should have received a copy of the GNU General Public License version
- * 2 along with this work; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
- *
- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
- * or visit www.oracle.com if you need additional information or have any
- * questions.
+ *版权所有（c）1995,2013，Oracle和/或其附属公司。版权所有。
+ *请勿更改或删除版权声明或本文件头。
+ *
+ *此代码是免费软件;你可以重新分配和/或修改它
+ *仅限于GNU通用公共许可证版本2的条款，如
+ *由自由软件基金会发布。 Oracle指定了这一点
+ *特定文件受限于所提供的“Classpath”异常
+ *由Oracle在伴随此代码的LICENSE文件中提供。
+ *
+ *这个代码是分发的，希望它会有用，但没有
+ *任何担保;甚至没有对适销性或适销性的暗示保证
+ *针对特定用途的适用性。请参阅GNU通用公共许可证
+ *版本2了解更多详情（一份副本包含在LICENSE文件中
+ *附有此代码）。
+ *
+ *您应该收到GNU通用公共许可证版本的副本
+ * 2与这项工作一起;如果没有，请写信给自由软件基金会，
+ * Inc.，51 Franklin St，Fifth Floor，Boston，MA 02110-1301 USA。
+ *
+ *请联系Oracle，500 Oracle Parkway，Redwood Shores，CA 94065 USA
+ *或访问www.oracle.com如果你需要更多的信息或有任何
+ *问题。
  */
 
 package java.io;
@@ -30,13 +30,12 @@ import sun.nio.ch.FileChannelImpl;
 
 
 /**
- * A <code>FileInputStream</code> obtains input bytes
- * from a file in a file system. What files
- * are  available depends on the host environment.
+ * <code>FileInputStream</code>从文件系统中的文件获取输入字节码。
+ * 什么文件可用取决于主机环境。
  *
- * <p><code>FileInputStream</code> is meant for reading streams of raw bytes
- * such as image data. For reading streams of characters, consider using
- * <code>FileReader</code>.
+ * <p><code>FileInputStream </code>用于读取诸如图像数据之类的原始字节流。
+ *  为了方便阅读字符流，请考虑使用
+ * <code> FileReader </code>。
  *
  * @author  Arthur van Hoff
  * @see     java.io.File
@@ -45,15 +44,14 @@ import sun.nio.ch.FileChannelImpl;
  * @see     java.nio.file.Files#newInputStream
  * @since   JDK1.0
  */
-public
-class FileInputStream extends InputStream
+public class FileInputStream extends InputStream
 {
-    /* File Descriptor - handle to the open file */
+    /* 文件描述符(Descriptor) --(handle)处理打开的文件 */
     private final FileDescriptor fd;
 
     /**
-     * The path of the referenced file
-     * (null if the stream is created with a file descriptor)
+     * 引用文件(referenced file)的路径
+     * （如果流(stream)是用文件描述符(file descriptor)创建的，则可以为空）
      */
     private final String path;
 
@@ -78,6 +76,21 @@ class FileInputStream extends InputStream
      * If the named file does not exist, is a directory rather than a regular
      * file, or for some other reason cannot be opened for reading then a
      * <code>FileNotFoundException</code> is thrown.
+     * *通过创建一个<code> FileInputStream </ code>
+      *打开一个连接到一个实际的文件，
+      *由路径名<code> name </ code>命名的文件
+      *在文件系统中。 一个新的<code> FileDescriptor </ code>
+      *创建对象来表示该文件
+      *连接。
+      * <p>
+      *首先，如果有安全
+      * manager，它的<code> checkRead </ code>方法
+      *用<code> name </ code>参数调用
+      *作为它的论据。
+      * <p>
+      *如果指定的文件不存在，则是目录而不是常规文件
+      *文件，或由于其他原因无法打开阅读然后a
+      * <code> FileNotFoundException </ code>被抛出。
      *
      * @param      name   the system-dependent file name.
      * @exception  FileNotFoundException  if the file does not exist,
