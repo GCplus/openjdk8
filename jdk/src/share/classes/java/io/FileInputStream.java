@@ -61,45 +61,22 @@ public class FileInputStream extends InputStream
     private volatile boolean closed = false;
 
     /**
-     * Creates a <code>FileInputStream</code> by
-     * opening a connection to an actual file,
-     * the file named by the path name <code>name</code>
-     * in the file system.  A new <code>FileDescriptor</code>
-     * object is created to represent this file
-     * connection.
+     * 通过打开与实际文件的连接来创建<code> FileInputStream </code>，
+     * 文件的命名是通过在文件系统的路径名字<code>name</code>获取。
+     * 将创建一个新的<code> FileDescriptor </ code>对象来表示此文件连接。
      * <p>
-     * First, if there is a security
-     * manager, its <code>checkRead</code> method
-     * is called with the <code>name</code> argument
-     * as its argument.
+     * 首先，如果存在安全管理器(security manager)，
+     * 则使用<code> checkRead </code>方法调用其<code> name </code>参数作为参数。
      * <p>
-     * If the named file does not exist, is a directory rather than a regular
-     * file, or for some other reason cannot be opened for reading then a
-     * <code>FileNotFoundException</code> is thrown.
-     * *通过创建一个<code> FileInputStream </ code>
-      *打开一个连接到一个实际的文件，
-      *由路径名<code> name </ code>命名的文件
-      *在文件系统中。 一个新的<code> FileDescriptor </ code>
-      *创建对象来表示该文件
-      *连接。
-      * <p>
-      *首先，如果有安全
-      * manager，它的<code> checkRead </ code>方法
-      *用<code> name </ code>参数调用
-      *作为它的论据。
-      * <p>
-      *如果指定的文件不存在，则是目录而不是常规文件
-      *文件，或由于其他原因无法打开阅读然后a
-      * <code> FileNotFoundException </ code>被抛出。
+     * 如果指定的文件名字不存在，则该名字是目录(directory)而不是常规文件(regular file)，
+     * 或者由于某些其他原因无法打开读取，则抛出<code> FileNotFoundException </code>。
      *
-     * @param      name   the system-dependent file name.
-     * @exception  FileNotFoundException  if the file does not exist,
-     *                   is a directory rather than a regular file,
-     *                   or for some other reason cannot be opened for
-     *                   reading.
-     * @exception  SecurityException      if a security manager exists and its
-     *               <code>checkRead</code> method denies read access
-     *               to the file.
+     * @param      name   该系统有关的文件名(the system-dependent file name)
+     * @exception  FileNotFoundException  如果该文件不存在，
+     *                 或是一个目录而不是一个普通的文件，
+     *                 或由于其他原因无法打开阅读。
+     * @exception  SecurityException      如果安全管理器存在
+     *                 并且系统拒绝了<code> checkRead </code>方法的读取文件的权限。
      * @see        java.lang.SecurityManager#checkRead(java.lang.String)
      */
     public FileInputStream(String name) throws FileNotFoundException {
@@ -107,17 +84,16 @@ public class FileInputStream extends InputStream
     }
 
     /**
-     * Creates a <code>FileInputStream</code> by
-     * opening a connection to an actual file,
-     * the file named by the <code>File</code>
-     * object <code>file</code> in the file system.
-     * A new <code>FileDescriptor</code> object
-     * is created to represent this file connection.
+     * 通过打开一个与实际文件连接创建一个 <code>FileInputStream</code>，
+     * 这个文件名字是通过文件系统中的<code>File</code>对象<code>file</code>来读取的。
+     * 创建一个新的<code> FileDescriptor </code>对象来表示此文件连接。
      * <p>
      * First, if there is a security manager,
      * its <code>checkRead</code> method  is called
      * with the path represented by the <code>file</code>
      * argument as its argument.
+     * 首先，如果存在安全管理器，
+     * <code>checkRead</code>方法
      * <p>
      * If the named file does not exist, is a directory rather than a regular
      * file, or for some other reason cannot be opened for reading then a
