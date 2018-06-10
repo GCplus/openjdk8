@@ -88,24 +88,19 @@ public class FileInputStream extends InputStream
      * 这个文件名字是通过文件系统中的<code>File</code>对象<code>file</code>来读取的。
      * 创建一个新的<code> FileDescriptor </code>对象来表示此文件连接。
      * <p>
-     * First, if there is a security manager,
-     * its <code>checkRead</code> method  is called
-     * with the path represented by the <code>file</code>
-     * argument as its argument.
      * 首先，如果存在安全管理器，
-     * <code>checkRead</code>方法
+     * 则使用由<code>file</code>参数表示的路径作为其参数调用<code> checkRead </code>方法。
      * <p>
-     * If the named file does not exist, is a directory rather than a regular
-     * file, or for some other reason cannot be opened for reading then a
-     * <code>FileNotFoundException</code> is thrown.
+     * 如果指定的文件不存在，是目录而不是常规文件，
+     * 或者由于某些其他原因无法读取，
+     * 则抛出<code> FileNotFoundException </code>异常。
      *
-     * @param      file   the file to be opened for reading.
-     * @exception  FileNotFoundException  if the file does not exist,
-     *                   is a directory rather than a regular file,
-     *                   or for some other reason cannot be opened for
-     *                   reading.
-     * @exception  SecurityException      if a security manager exists and its
-     *               <code>checkRead</code> method denies read access to the file.
+     * @param      file   该文件将被打开读取
+     * @exception  FileNotFoundException  如果指定的文件不存在，
+     *                    是目录而不是常规文件，
+     *                    或者由于某些其他原因无法读取
+     * @exception  SecurityException      如果安全管理器存在
+     *                    并且系统拒绝了<code> checkRead </code>方法的读取文件的权限。
      * @see        java.io.File#getPath()
      * @see        java.lang.SecurityManager#checkRead(java.lang.String)
      */
@@ -128,27 +123,23 @@ public class FileInputStream extends InputStream
     }
 
     /**
-     * Creates a <code>FileInputStream</code> by using the file descriptor
-     * <code>fdObj</code>, which represents an existing connection to an
-     * actual file in the file system.
+     * 使用文件描述符<code>fdObj</code>创建一个<code>FileInputStream</code>，
+     * 该文件描述符表示与文件系统中实际文件的现有连接。
      * <p>
-     * If there is a security manager, its <code>checkRead</code> method is
-     * called with the file descriptor <code>fdObj</code> as its argument to
-     * see if it's ok to read the file descriptor. If read access is denied
-     * to the file descriptor a <code>SecurityException</code> is thrown.
+     * 如果存在安全管理器，
+     * 则使用文件描述符<code>fdObj</code>作为其参数调用<code>checkRead</code>方法，
+     * 以查看是否可以读取文件描述符。
+     * 如果文件描述符的读权限被拒绝，则抛出<code>SecurityException</code>异常
      * <p>
-     * If <code>fdObj</code> is null then a <code>NullPointerException</code>
-     * is thrown.
+     * 如果<code> fdObj </code>为null，则引发<code> NullPointerException </code>异常。
      * <p>
-     * This constructor does not throw an exception if <code>fdObj</code>
-     * is {@link java.io.FileDescriptor#valid() invalid}.
-     * However, if the methods are invoked on the resulting stream to attempt
-     * I/O on the stream, an <code>IOException</code> is thrown.
+     * 如果<code>fdObj</code>是{@link java.io.FileDescriptor#valid() invalid}，
+     * 那么该方法不会抛出异常。
+     * 但是，如果在生成的流上调用此方法以在流上尝试I/O，则会引发<code>IOException</code>异常。
      *
-     * @param      fdObj   the file descriptor to be opened for reading.
-     * @throws     SecurityException      if a security manager exists and its
-     *                 <code>checkRead</code> method denies read access to the
-     *                 file descriptor.
+     * @param      fdObj   打开文件描述符以供阅读(the file descriptor to be opened for reading)
+     * @throws     SecurityException      如果安全管理器存在
+     *                     并且系统拒绝了<code> checkRead </code>方法的读取文件描述符权限
      * @see        SecurityManager#checkRead(java.io.FileDescriptor)
      */
     public FileInputStream(FileDescriptor fdObj) {
@@ -163,34 +154,32 @@ public class FileInputStream extends InputStream
         path = null;
 
         /*
-         * FileDescriptor is being shared by streams.
-         * Register this stream with FileDescriptor tracker.
+         * 文件描述符(FileDescriptor)正在被流(streams)共享。
+         * 使用文件描述符(FileDescriptor)跟踪器(tracker)注册此流。
          */
         fd.attach(this);
     }
 
     /**
-     * Opens the specified file for reading.
-     * @param name the name of the file
+     * 打开指定的文件以进行读取
+     * @param name 文件的名字
      */
     private native void open0(String name) throws FileNotFoundException;
 
-    // wrap native call to allow instrumentation
+    // wrap native call to allow instrumentation（包装本地调用以允许检测）
     /**
-     * Opens the specified file for reading.
-     * @param name the name of the file
+     * 打开指定的文件以进行读取。
+     * @param name 文件的名字
      */
     private void open(String name) throws FileNotFoundException {
         open0(name);
     }
 
     /**
-     * Reads a byte of data from this input stream. This method blocks
-     * if no input is yet available.
+     * 从这个输入流读取一个字节的数据。如果没有输入，则此方法会阻塞。
      *
-     * @return     the next byte of data, or <code>-1</code> if the end of the
-     *             file is reached.
-     * @exception  IOException  if an I/O error occurs.
+     * @return     数据的下一个字节，如果到达文件的末尾，则为<code> -1 </code>。
+     * @exception  IOException  如果发生I/O错误。
      */
     public int read() throws IOException {
         return read0();
@@ -199,11 +188,11 @@ public class FileInputStream extends InputStream
     private native int read0() throws IOException;
 
     /**
-     * Reads a subarray as a sequence of bytes.
-     * @param b the data to be written
-     * @param off the start offset in the data
-     * @param len the number of bytes that are written
-     * @exception IOException If an I/O error has occurred.
+     * 将子数组(subarray)作为字节序列读取(sequence of bytes)。
+     * @param b 要写入的数据
+     * @param off 数据中的起始偏移量
+     * @param len 写入的字节数
+     * @exception IOException 如果发生I/O错误。
      */
     private native int readBytes(byte b[], int off, int len) throws IOException;
 
