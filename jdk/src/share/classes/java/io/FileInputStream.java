@@ -197,65 +197,57 @@ public class FileInputStream extends InputStream
     private native int readBytes(byte b[], int off, int len) throws IOException;
 
     /**
-     * Reads up to <code>b.length</code> bytes of data from this input
-     * stream into an array of bytes. This method blocks until some input
-     * is available.
+     * 从这个输入流中读取<code> b.length </code>字节的数据到一个字节数组中。此方法阻塞，直到有些输入可用。
      *
-     * @param      b   the buffer into which the data is read.
-     * @return     the total number of bytes read into the buffer, or
-     *             <code>-1</code> if there is no more data because the end of
-     *             the file has been reached.
-     * @exception  IOException  if an I/O error occurs.
+     * @param      b   数据读入的缓冲区。
+     * @return     由于已经达到了文件的末尾而没有更多的数据，则读入缓冲区的总字节数或<code> -1 </code>
+     * @exception  IOException  如果发生I/O异常
      */
     public int read(byte b[]) throws IOException {
         return readBytes(b, 0, b.length);
     }
 
     /**
-     * Reads up to <code>len</code> bytes of data from this input stream
-     * into an array of bytes. If <code>len</code> is not zero, the method
-     * blocks until some input is available; otherwise, no
-     * bytes are read and <code>0</code> is returned.
-     *
-     * @param      b     the buffer into which the data is read.
-     * @param      off   the start offset in the destination array <code>b</code>
-     * @param      len   the maximum number of bytes read.
-     * @return     the total number of bytes read into the buffer, or
-     *             <code>-1</code> if there is no more data because the end of
-     *             the file has been reached.
-     * @exception  NullPointerException If <code>b</code> is <code>null</code>.
-     * @exception  IndexOutOfBoundsException If <code>off</code> is negative,
-     * <code>len</code> is negative, or <code>len</code> is greater than
-     * <code>b.length - off</code>
-     * @exception  IOException  if an I/O error occurs.
+     * 从该输入流中将<code> len </ code>字节的数据读入到一个字节数组中。
+     * 如果<code> len </code>不为零，该方法会阻塞，直到某些输入可用; 
+     * 否则，不读取字节并返回<code> 0 </code>。
+     * 
+     * @param      b     数据读入的缓冲区。
+     * @param      off   目标数组<code> b </code>中的起始偏移量
+     * @param      len   读取的最大字节数。
+     * @return     如果由于已达到文件末尾而没有更多数据，
+     *             则读入缓冲区的总字节数或<code> -1 </ code>。
+     * @exception  NullPointerException 如果 <code>b</code> 是 <code>null</code>.
+     * @exception  IndexOutOfBoundsException 如果<code> off </code>为负数，
+     *             <code> len </code>为负数，
+     *             或者<code> len </code>大于<code> b.length - off </code>
+     * @exception  IOException  如果发生I/O错误。
      */
     public int read(byte b[], int off, int len) throws IOException {
         return readBytes(b, off, len);
     }
 
     /**
-     * Skips over and discards <code>n</code> bytes of data from the
-     * input stream.
+     * 跳过并丢弃输入流中的<code> n </code>字节数据。
      *
-     * <p>The <code>skip</code> method may, for a variety of
-     * reasons, end up skipping over some smaller number of bytes,
-     * possibly <code>0</code>. If <code>n</code> is negative, the method
-     * will try to skip backwards. In case the backing file does not support
-     * backward skip at its current position, an <code>IOException</code> is
-     * thrown. The actual number of bytes skipped is returned. If it skips
-     * forwards, it returns a positive value. If it skips backwards, it
-     * returns a negative value.
+     * <p>
+     * 由于各种原因，<code> skip </code>方法可能会跳过一些较小数量的字节，
+     * 可能是<code> 0 </code>。 如果<code> n </code>是负数，
+     * 该方法将尝试向后跳过。 如果后备文件在当前位置不支持向后跳转，
+     * 则抛出<code> IOException </code>。 返回跳过的实际字节数。
+     * 如果向前跳过，则返回正值。 如果它向后跳，它会返回一个负值。
      *
-     * <p>This method may skip more bytes than what are remaining in the
-     * backing file. This produces no exception and the number of bytes skipped
-     * may include some number of bytes that were beyond the EOF of the
-     * backing file. Attempting to read from the stream after skipping past
-     * the end will result in -1 indicating the end of the file.
-     *
-     * @param      n   the number of bytes to be skipped.
-     * @return     the actual number of bytes skipped.
-     * @exception  IOException  if n is negative, if the stream does not
-     *             support seek, or if an I/O error occurs.
+     * <p>
+     * 此方法可能会跳过比备份文件(backing file)中剩余的更多的字节。
+     * 这不会产生异常，并且跳过的字节数可能包含超出备份文件EOF的一些字节数。
+     * 在跳过流的结尾后尝试从流中读取数据将导致 -1 ，这代表已经读取到了文件的结尾(
+     * Attempting to read from the stream after skipping past
+     * the end will result in -1 indicating the end of the file)。
+     * 
+     * @param      n   要跳过的字节数
+     * @return     实际跳过的字节数
+     * @exception  IOException  如果n是负数，
+     *             如果流不支持查找，或者发生I/O错误。
      */
     public long skip(long n) throws IOException {
         return skip0(n);
@@ -270,6 +262,10 @@ public class FileInputStream extends InputStream
      * position is beyond EOF. The next invocation might be the same thread
      * or another thread. A single read or skip of this many bytes will not
      * block, but may read or skip fewer bytes.
+     * 返回可从此输入流中读取（或跳过）的剩余字节数的估计值，
+     * 而不会因为此输入流的下一次方法调用而被阻塞。
+     * 文件位置超出EOF时返回0。 下一次调用可能是同一个线程或另一个线程。
+     * 单个读取或跳过这么多字节不会被阻塞，但可以读取或跳过更少的字节。
      *
      * <p> In some cases, a non-blocking read (or skip) may appear to be
      * blocked when it is merely slow, for example when reading large
