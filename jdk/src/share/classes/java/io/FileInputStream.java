@@ -256,25 +256,17 @@ public class FileInputStream extends InputStream
     private native long skip0(long n) throws IOException;
 
     /**
-     * Returns an estimate of the number of remaining bytes that can be read (or
-     * skipped over) from this input stream without blocking by the next
-     * invocation of a method for this input stream. Returns 0 when the file
-     * position is beyond EOF. The next invocation might be the same thread
-     * or another thread. A single read or skip of this many bytes will not
-     * block, but may read or skip fewer bytes.
      * 返回可从此输入流中读取（或跳过）的剩余字节数的估计值，
      * 而不会因为此输入流的下一次方法调用而被阻塞。
-     * 文件位置超出EOF时返回0。 下一次调用可能是同一个线程或另一个线程。
-     * 单个读取或跳过这么多字节不会被阻塞，但可以读取或跳过更少的字节。
+     * 文件位置超出EOF（文件结尾）时返回0。 下一次调用可能是同一个线程或另一个线程。
+     * 单个读取或跳过这么多字节不会被阻塞，但只能(may)读取或跳过更少的字节。
      *
-     * <p> In some cases, a non-blocking read (or skip) may appear to be
-     * blocked when it is merely slow, for example when reading large
-     * files over slow networks.
+     * <p> 
+     * 在一些情况下，当一个非阻塞的读取（或跳过）在缓慢的时候可能会出现阻塞，
+     * 例如通过慢速网络读取大型文件时候
      *
-     * @return     an estimate of the number of remaining bytes that can be read
-     *             (or skipped over) from this input stream without blocking.
-     * @exception  IOException  if this file input stream has been closed by calling
-     *             {@code close} or an I/O error occurs.
+     * @return     可以在不阻塞的情况下从该输入流中读取（或跳过）的剩余字节数的估计值。
+     * @exception  IOException  如果通过调用{@code close}关闭了此文件输入流或发生 I/O 错误。
      */
     public int available() throws IOException {
         return available0();
@@ -283,13 +275,11 @@ public class FileInputStream extends InputStream
     private native int available0() throws IOException;
 
     /**
-     * Closes this file input stream and releases any system resources
-     * associated with the stream.
+     * 关闭此文件输入流并释放与这个输入流相关联的任何系统资源。
      *
-     * <p> If this stream has an associated channel then the channel is closed
-     * as well.
+     * <p> 如果该流具有相关信道，则信道也被关闭。
      *
-     * @exception  IOException  if an I/O error occurs.
+     * @exception  IOException  如果发生 I/O 错误
      *
      * @revised 1.4
      * @spec JSR-51
@@ -313,13 +303,11 @@ public class FileInputStream extends InputStream
     }
 
     /**
-     * Returns the <code>FileDescriptor</code>
-     * object  that represents the connection to
-     * the actual file in the file system being
-     * used by this <code>FileInputStream</code>.
+     * 返回表示与此<code> FileInputStream </code>使用的文件系统中
+     * 实际文件的连接的<code> FileDescriptor </code>对象。
      *
-     * @return     the file descriptor object associated with this stream.
-     * @exception  IOException  if an I/O error occurs.
+     * @return     与此流关联的文件描述符对象(descriptor object)
+     * @exception  IOException  如果发生 I/O 错误。
      * @see        java.io.FileDescriptor
      */
     public final FileDescriptor getFD() throws IOException {
@@ -330,17 +318,16 @@ public class FileInputStream extends InputStream
     }
 
     /**
-     * Returns the unique {@link java.nio.channels.FileChannel FileChannel}
-     * object associated with this file input stream.
+     * 返回与此文件输入流关联的唯一{@link java.nio.channels.FileChannel FileChannel}对象。
      *
-     * <p> The initial {@link java.nio.channels.FileChannel#position()
-     * position} of the returned channel will be equal to the
-     * number of bytes read from the file so far.  Reading bytes from this
-     * stream will increment the channel's position.  Changing the channel's
-     * position, either explicitly or by reading, will change this stream's
-     * file position.
+     * <p>
+     * 返回通道的初始{@link java.nio.channels.FileChannel#position（）
+     * position}将等于从文件中读取的一定字节数。 从此流中读取字节将增加通道的位置。
+     *  通过显式或通过读取更改通道的位置，将改变此流的文件位置。
+     * (Changing the channel's position, either explicitly or by reading, 
+     * will change this stream's file position.)
      *
-     * @return  the file channel associated with this file input stream
+     * @return  与此文件输入流关联的文件通道
      *
      * @since 1.4
      * @spec JSR-51
@@ -363,18 +350,18 @@ public class FileInputStream extends InputStream
     }
 
     /**
-     * Ensures that the <code>close</code> method of this file input stream is
-     * called when there are no more references to it.
+     * 确保在没有更多引用时调用此文件输入流的<code> close </code>方法。
      *
-     * @exception  IOException  if an I/O error occurs.
+     * @exception  IOException  如果发生I/O错误。
      * @see        java.io.FileInputStream#close()
      */
     protected void finalize() throws IOException {
         if ((fd != null) &&  (fd != FileDescriptor.in)) {
-            /* if fd is shared, the references in FileDescriptor
-             * will ensure that finalizer is only called when
-             * safe to do so. All references using the fd have
-             * become unreachable. We can call close()
+            /* 如果fd(FileDescriptor,文件描述符)是共享状态，
+             * 文件描述符中的引用将确保终结器在安全的时候才被调用。
+             * 使用FD的所有引用都变得不可访问。( All references using the fd have
+             * become unreachable.)
+             * 我们再调用close()函数。
              */
             close();
         }
